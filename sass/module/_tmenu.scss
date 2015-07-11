@@ -1,0 +1,68 @@
+.tMenu {
+    background: #ebebeb;
+    padding: 22px 0;
+
+    @include breakpointmedia(768, 'max-width') {
+        padding: 10px 0;
+    }
+
+    .wrapper {
+        @include clearfix();
+    }
+}
+
+.tMenu__left {
+    float: left;
+    width: 30%;
+}
+
+.tMenu__right {
+    float: right;
+    width: 70%;
+}
+
+.tMenu__logo {
+    a {
+        text-decoration: none;
+    }
+
+    img {
+        max-width: 100%;
+    }
+}
+
+.tMenu__menu {
+    display: inline-block;
+    vertical-align: top;
+    @include clearfix();
+
+    li {
+        float: left;
+        margin-left: 55px;
+
+        &:first-child { margin-left: 0; }
+
+        @include breakpointmedia(768, 'max-width') {
+            margin-left: 7px;
+        }
+    }
+
+    a {
+        display: block;
+        color: #4f1750;
+        font-size: 18px;
+        text-decoration: none;
+        padding-bottom: 8px;
+        padding-top: 20px;
+
+        @include breakpointmedia(768, 'max-width') {
+            font-size: 12px;
+            padding-top: 8px;
+
+        }
+
+        &:hover {
+            border-bottom: 2px solid #4f1750;
+        }
+    }
+}

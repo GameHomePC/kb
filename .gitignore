@@ -1,0 +1,4 @@
+.idea/
+node_modules/gulp-sass/node_modules/
+node_modules/
+.sass-cache/

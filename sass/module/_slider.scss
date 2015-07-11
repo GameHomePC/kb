@@ -1,0 +1,113 @@
+.hSlider {
+    .owl-prev, .owl-next {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+
+        &:before {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 33px;
+            height: 87px;
+            background: url("../images/arrow.png") 0 0 no-repeat;
+            content: "";
+
+            @include breakpointmedia(768, 'max-width') {
+                background-size: 200% 100%;
+                width: 20px * 0.5;
+                height: 87px * 0.5;
+            }
+        }
+    }
+
+    .owl-prev {
+        left: 58px;
+
+        @include breakpointmedia(768, 'max-width') {
+            left: 0;
+        }
+
+        &:before {
+            background-position: right 0;
+        }
+    }
+    .owl-next {
+        right: 58px;
+
+        @include breakpointmedia(768, 'max-width') {
+            right: 0;
+        }
+
+        &:before {
+            background-position: left 0;
+        }
+    }
+}
+
+.hSlider__item {
+    font-size: 0;
+    img {
+        max-width: 100%;
+    }
+}
+
+.hSlider__container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    width: 60%;
+    margin: auto;
+    transform: translateY(-50%);
+
+    @include breakpointmedia(768, 'max-width') {
+        width: 80%;
+    }
+
+    h2 {
+        font-size: 48px;
+        color: #ffffff;
+        text-transform: uppercase;
+
+        @include breakpointmedia(768, 'max-width') {
+            font-size: 14px;
+        }
+    }
+
+    p {
+        font-size: 20px;
+        color: #ffffff;
+        margin-top: 60px;
+        line-height: 24px;
+        width: 50%;
+
+        @include breakpointmedia(768, 'max-width') {
+            margin-top: 5px;
+            font-size: 9px;
+            line-height: 12px;
+            width: 50%;
+        }
+    }
+
+    .hSlider__icon {
+        margin-top: 60px;
+
+        @include breakpointmedia(768, 'max-width') {
+            margin-top: 5px;
+        }
+    }
+}
+
+.hSlider__icon {
+    img {
+        @include breakpointmedia(768, 'max-width') {
+            width: 55px;
+        }
+    }
+}
+

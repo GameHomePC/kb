@@ -1,0 +1,27 @@
+.wrapper {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.content {
+    width: 80%;
+    margin: 0 auto;
+}
+
+body {
+    font-family: $OpenSans;
+}
+
+.tc { text-align: center; }
+.tl { text-align: left; }
+.tr { text-align: right; }
+
+.pageItem {
+    padding: 60px 0;
+}
+
+.pageItem__title {
+    text-align: center;
+    color: #585660;
+    font-size: 38px;
+}
