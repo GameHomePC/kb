@@ -10,6 +10,7 @@ var globalServer = 'https://dev.shopplanetblue.com';
 var localServer = 'kb.loc';
 var sassPath = 'sass/**/*.scss';
 var templatesPath = '**/*.html';
+var jsPath = '**/*.js';
 
 
 gulp.task('google-fonts', function () {
@@ -62,12 +63,11 @@ gulp.task('browser-sync', function() {
             baseDir: "./"
         }
     });
-
-
 });
 
 gulp.task('watch', function() {
     gulp.watch(templatesPath).on('change', browserSync.reload);
+    gulp.watch(jsPath).on('change', browserSync.reload);
     gulp.watch(sassPath, ['dev-sass']);
 });
 

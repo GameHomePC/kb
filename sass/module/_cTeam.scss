@@ -10,6 +10,12 @@
     margin-top: 85px;
     margin-left: 5%;
 
+    @include breakpointmedia(768, 'max-width') {
+        width: 100%;
+        margin-top: 35px;
+        margin-left: 0;
+    }
+
     &:nth-of-type(3n+1) {
         margin-left: 0;
     }
@@ -22,6 +28,10 @@
         font-size: 24px;
         color: #000000;
         margin-top: 22px;
+
+        @include breakpointmedia(768, 'max-width') {
+            margin-top: 10px;
+        }
     }
 
     p {
@@ -32,6 +42,10 @@
             margin-top: 20px;
             max-width: 210px;
             line-height: 18px;
+
+            @include breakpointmedia(768, 'max-width') {
+                margin-top: 10px;
+            }
         }
     }
 }

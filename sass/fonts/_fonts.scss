@@ -1,5 +1,11 @@
 //=============
 // Open Sans
 //=============
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic-ext,cyrillic);
+@import "//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic-ext,cyrillic";
 $OpenSans: 'Open Sans', sans-serif;
+
+//=============
+// Font Awesome
+//=============
+@import "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css";
+$FontAwesome: 'FontAwesome', sans-serif;

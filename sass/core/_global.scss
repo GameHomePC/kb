@@ -18,10 +18,30 @@ body {
 
 .pageItem {
     padding: 60px 0;
+
+    @include breakpointmedia(768, 'max-width') {
+        padding: 20px 0;
+    }
 }
 
 .pageItem__title {
     text-align: center;
     color: #585660;
     font-size: 38px;
+    font-weight: 300;
+
+    @include breakpointmedia(768, 'max-width') {
+        font-size: 24px;
+    }
 }
+
+.pageItem__left {
+    float: left;
+}
+
+.pageItem__right {
+    float: left;
+}
+
+.pdl { padding-left: 30px; }
+.pdr { padding-right: 30px; }
