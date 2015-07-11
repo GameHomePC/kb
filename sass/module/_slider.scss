@@ -28,6 +28,10 @@
     .owl-prev {
         left: 58px;
 
+        @include breakpointmedia(1024, 'max-width') {
+            left: 20px;
+        }
+
         @include breakpointmedia(768, 'max-width') {
             left: 0;
         }
@@ -38,6 +42,10 @@
     }
     .owl-next {
         right: 58px;
+
+        @include breakpointmedia(1024, 'max-width') {
+            right: 20px;
+        }
 
         @include breakpointmedia(768, 'max-width') {
             right: 0;
@@ -86,6 +94,10 @@
         line-height: 24px;
         width: 50%;
 
+        @include breakpointmedia(1024, 'max-width') {
+            margin-top: 30px;
+        }
+
         @include breakpointmedia(768, 'max-width') {
             margin-top: 5px;
             font-size: 9px;
@@ -96,6 +108,10 @@
 
     .hSlider__icon {
         margin-top: 60px;
+
+        @include breakpointmedia(1024, 'max-width') {
+            margin-top: 30px;
+        }
 
         @include breakpointmedia(768, 'max-width') {
             margin-top: 5px;

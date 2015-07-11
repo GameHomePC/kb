@@ -6,7 +6,7 @@
         width: 100%;
     }
 
-    @include breakpointmedia(768, 'max-width') {
+    @include breakpointmedia(1024, 'max-width') {
         &:before {
             position: absolute;
             top: 0;
@@ -42,9 +42,12 @@
         color: #4b0762;
         text-transform: uppercase;
 
+        @include breakpointmedia(1024, 'max-width') {
+            color: #ffffff;
+        }
+
         @include breakpointmedia(768, 'max-width') {
             font-size: 12px;
-            color: #ffffff;
         }
     }
 
@@ -54,16 +57,24 @@
         margin-top: 40px;
         line-height: 24px;
 
+        @include breakpointmedia(1024, 'max-width') {
+            color: #ffffff;
+            margin-top: 20px;
+        }
+
         @include breakpointmedia(768, 'max-width') {
             margin-top: 5px;
             font-size: 9px;
             line-height: 12px;
-            color: #ffffff;
         }
     }
 
     .bunnerOne__icon {
         margin-top: 40px;
+
+        @include breakpointmedia(1024, 'max-width') {
+            margin-top: 20px;
+        }
 
         @include breakpointmedia(768, 'max-width') {
             margin-top: 5px;
@@ -85,7 +96,7 @@
     text-align: left;
     width: 35%;
 
-    @include breakpointmedia(768, 'max-width') {
+    @include breakpointmedia(1024, 'max-width') {
         width: 100%;
     }
 }

@@ -79,17 +79,6 @@ $media-dppx: 'only screen and (-webkit-min-device-pixel-ratio: 1.5), (min-resolu
     margin: $blockMargin;
 }
 
-/* more 640px */
-$media-450: 'only screen and (max-width: 450px)';
-$media-640: 'only screen and (max-width: 639px)';
-$media-870: 'only screen and (max-width: 870px)';
-$media-1000: 'only screen and (max-width: 999px)';
-$media-1000_min: 'only screen and (min-width: 1000px)';
-$media-1024: 'only screen and (max-width: 1024px)';
-$media-1024_min: 'only screen and (min-width: 1024px)';
-$media-1200: 'only screen and (max-width: 1205px)';
-
-
 @mixin core-justify() {
     font-size: 0;
     text: {
