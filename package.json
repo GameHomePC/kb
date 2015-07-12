@@ -1,12 +1,12 @@
 {
-  "name": "planetblue-design",
+  "name": "kb",
   "version": "1.0.0",
-  "description": "Planetblue styles",
+  "description": "kb styles",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "vladimir.kraykovsky@neklo.com",
+  "author": "ealexsee@gmail.com",
   "license": "ISC",
   "dependencies": {
     "browser-sync": ">=2.7.12",
