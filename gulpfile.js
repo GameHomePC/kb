@@ -6,71 +6,84 @@ var autoprefixer = require('gulp-autoprefixer');
 var googleWebFonts = require('gulp-google-webfonts');
 var browserSync = require('browser-sync').create();
 
-var globalServer = 'https://dev.shopplanetblue.com';
-var localServer = 'kb.loc';
-var sassPath = 'sass/**/*.scss';
-var templatesPath = '**/*.html';
-var jsPath = '**/*.js';
+var conf = {
+    globalServer: 'https://dev.shopplanetblue.com',
+    localServer: 'planetblue-enterprise.loc',
+    sass: {
+        watch: './sass/**/*.scss',
+        rubySass: 'sass/',
+        css: 'css',
+        map: './'
+    },
+    templatesPath: '**/*.html',
+    fonts: {
+        dirFonts: './fonts',
+        listFonts: './*.list'
+    },
+    dirJS: './**/*.js'
+};
 
-
+// ==============
+// google-fonts
+// ==============
 gulp.task('google-fonts', function () {
-    gulp.src('./fonts.list')
+    gulp.src(conf.fonts.listFonts)
         .pipe(googleWebFonts())
-        .pipe(gulp.dest('./fonts'))
+        .pipe(gulp.dest(conf.fonts.dirFonts))
 });
 
-//gulp.task('rubySass', function() {
-//    return rubySass(sassPath, { sourcemap: true, compass: true })
-//        .on('error', function (err) {
-//            console.error('Error!', err.message);
-//        })
-//        .pipe(sourcemaps.write())
-//        .pipe(gulp.dest('./css/*.css'));
-//});
-//
-//gulp.task('dev-rubySass', function () {
-//    return rubySass(sassPath, { sourcemap: true, compass: true })
-//        .on('error', function (err) {
-//            console.error('Error!', err.message);
-//        })
-//        .pipe(sourcemaps.write())
-//        .pipe(gulp.dest('./css/*.css'))
-//        .pipe(browserSync.reload({stream: true}));
-//});
-
+// ==============
+// sass
+// ==============
 gulp.task('sass', function () {
-    gulp.src(sassPath)
-        .pipe(sass())
+    return rubySass(conf.sass.rubySass, { compass: true })
+        .on('error', function (err) {
+            console.error('Error!', err.message);
+        })
         .pipe(autoprefixer('last 3 version', '> 1%', 'ie 8', 'ie 7'))
-        .pipe(gulp.dest('./css'));
+        .pipe(gulp.dest(conf.sass.css));
 });
 
+// ==============
+// dev-sass
+// ==============
 gulp.task('dev-sass', function () {
-    gulp.src(sassPath)
-        .pipe(sourcemaps.init())
-        .pipe(sass())
-        //.pipe(autoprefixer('last 3 version', '> 1%', 'ie 8', 'ie 7'))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./css'))
+    return rubySass(conf.sass.rubySass, { compass: true, sourcemap: true })
+        .on('error', function (err) {
+            console.error('Error!', err.message);
+        })
+        .pipe(autoprefixer('last 3 version', '> 1%', 'ie 7-10'))
+        .pipe(gulp.dest(conf.sass.css))
         .pipe(browserSync.reload({stream: true}));
 });
 
-
+// ==============
+// browser-sync
+// ==============
 gulp.task('browser-sync', function() {
     browserSync.init({
-        port: 81,
         server: {
             baseDir: "./"
         }
     });
 });
 
+// ==============
+// watch
+// ==============
 gulp.task('watch', function() {
-    gulp.watch(templatesPath).on('change', browserSync.reload);
-    gulp.watch(jsPath).on('change', browserSync.reload);
-    gulp.watch(sassPath, ['dev-sass']);
+    gulp.watch(conf.templatesPath).on('change', browserSync.reload);
+    gulp.watch(conf.dirJS).on('change', browserSync.reload);
+    gulp.watch(conf.sass.watch, ['dev-sass']);
+    gulp.watch(conf.fonts.listFonts, ['google-fonts']);
 });
 
+// ==============
+// build
+// ==============
 gulp.task('build', ['google-fonts', 'sass']);
 
+// ==============
+// default
+// ==============
 gulp.task('default', ['google-fonts', 'browser-sync', 'dev-sass', 'watch']);

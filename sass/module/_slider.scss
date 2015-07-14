@@ -58,10 +58,8 @@
 }
 
 .hSlider__item {
+    background-position: center center;
     font-size: 0;
-    img {
-        max-width: 100%;
-    }
 }
 
 .hSlider__container {
@@ -72,6 +70,7 @@
     width: 60%;
     margin: auto;
     transform: translateY(-50%);
+    z-index: 10;
 
     @include breakpointmedia(768, 'max-width') {
         width: 80%;
@@ -120,6 +119,8 @@
 }
 
 .hSlider__icon {
+    display: inline-block;
+
     img {
         @include breakpointmedia(768, 'max-width') {
             width: 55px;
