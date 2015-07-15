@@ -1,4 +1,10 @@
 .hSlider {
+    padding-bottom: 103px;
+
+    @include breakpointmedia(768, 'max-width') {
+        padding-bottom: 53px;
+    }
+
     .owl-prev, .owl-next {
         position: absolute;
         top: 0;
@@ -60,6 +66,17 @@
 .hSlider__item {
     background-position: center center;
     font-size: 0;
+
+    & > img { display: none; }
+
+    @include breakpointmedia(768, 'max-width') {
+        background: none!important;
+        & > img { display: block; }
+
+        .hSlider__icon {
+            img { max-width: 30%; }
+        }
+    }
 }
 
 .hSlider__container {

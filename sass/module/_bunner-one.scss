@@ -243,13 +243,8 @@
         -webkit-backface-visibility: hidden;
         -webkit-tap-highlight-color: transparent;
         -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
     }
     .owl-carousel .owl-item img {
-        display: block;
         width: 100%;
         -webkit-transform-style: preserve-3d;
     }

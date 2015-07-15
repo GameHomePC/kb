@@ -2451,7 +2451,8 @@ input, textarea {
     .owl-theme .owl-controls .owl-buttons div {
       width: 20px;
       height: 100%;
-      border-radius: 0; } }
+      border-radius: 0;
+      bottom: 53px; } }
 
 /* Clickable class fix problem with hover on touch devices */
 /* Use it for non-touch hover action */
@@ -2499,51 +2500,65 @@ input, textarea {
   min-height: 150px;
   background: url(AjaxLoader.gif) no-repeat center center; }
 
-.hSlider .owl-prev, .hSlider .owl-next {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: auto; }
-  .hSlider .owl-prev:before, .hSlider .owl-next:before {
+.hSlider {
+  padding-bottom: 103px; }
+  @media screen and (max-width: 48em) {
+    .hSlider {
+      padding-bottom: 53px; } }
+  .hSlider .owl-prev, .hSlider .owl-next {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 33px;
-    height: 87px;
-    background: url("../images/arrow.png") 0 0 no-repeat;
-    content: ""; }
+    margin: auto; }
+    .hSlider .owl-prev:before, .hSlider .owl-next:before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 33px;
+      height: 87px;
+      background: url("../images/arrow.png") 0 0 no-repeat;
+      content: ""; }
+      @media screen and (max-width: 48em) {
+        .hSlider .owl-prev:before, .hSlider .owl-next:before {
+          background-size: 200% 100%;
+          width: 10px;
+          height: 43.5px; } }
+  .hSlider .owl-prev {
+    left: 58px; }
+    @media screen and (max-width: 64em) {
+      .hSlider .owl-prev {
+        left: 20px; } }
     @media screen and (max-width: 48em) {
-      .hSlider .owl-prev:before, .hSlider .owl-next:before {
-        background-size: 200% 100%;
-        width: 10px;
-        height: 43.5px; } }
-.hSlider .owl-prev {
-  left: 58px; }
-  @media screen and (max-width: 64em) {
-    .hSlider .owl-prev {
-      left: 20px; } }
-  @media screen and (max-width: 48em) {
-    .hSlider .owl-prev {
-      left: 0; } }
-  .hSlider .owl-prev:before {
-    background-position: right 0; }
-.hSlider .owl-next {
-  right: 58px; }
-  @media screen and (max-width: 64em) {
-    .hSlider .owl-next {
-      right: 20px; } }
-  @media screen and (max-width: 48em) {
-    .hSlider .owl-next {
-      right: 0; } }
-  .hSlider .owl-next:before {
-    background-position: left 0; }
+      .hSlider .owl-prev {
+        left: 0; } }
+    .hSlider .owl-prev:before {
+      background-position: right 0; }
+  .hSlider .owl-next {
+    right: 58px; }
+    @media screen and (max-width: 64em) {
+      .hSlider .owl-next {
+        right: 20px; } }
+    @media screen and (max-width: 48em) {
+      .hSlider .owl-next {
+        right: 0; } }
+    .hSlider .owl-next:before {
+      background-position: left 0; }
 
 .hSlider__item {
   background-position: center center;
   font-size: 0; }
+  .hSlider__item > img {
+    display: none; }
+  @media screen and (max-width: 48em) {
+    .hSlider__item {
+      background: none !important; }
+      .hSlider__item > img {
+        display: block; }
+      .hSlider__item .hSlider__icon img {
+        max-width: 30%; } }
 
 .hSlider__container {
   position: absolute;
@@ -2793,14 +2808,9 @@ input, textarea {
   float: left;
   -webkit-backface-visibility: hidden;
   -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; }
+  -webkit-touch-callout: none; }
 
 .owl-carousel .owl-item img {
-  display: block;
   width: 100%;
   -webkit-transform-style: preserve-3d; }
 
@@ -2884,24 +2894,31 @@ input, textarea {
   z-index: 1; }
 
 .tMenu {
+  position: relative;
   background: #ebebeb;
-  padding: 22px 0; }
+  margin-top: -103px;
+  z-index: 100; }
   @media screen and (max-width: 48em) {
     .tMenu {
-      padding: 10px 0; } }
+      margin-top: -53px;
+      height: 53px; } }
   .tMenu .wrapper:after {
     content: "";
     display: block;
     clear: both; }
+  .tMenu .content {
+    padding: 22px 0;
+    box-sizing: border-box; }
+    @media screen and (max-width: 48em) {
+      .tMenu .content {
+        padding: 10px 0; } }
 
 body.active .tMenu {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 100; }
-body.active .bunnerOne {
-  padding-top: 103px; }
+  margin-top: 0; }
 
 .tMenu__left {
   float: left;
@@ -2943,6 +2960,8 @@ body.active .bunnerOne {
         font-size: 12px;
         padding-top: 8px; } }
     .tMenu__menu a:hover {
+      border-bottom: 2px solid #4f1750; }
+    .tMenu__menu a.activeLink {
       border-bottom: 2px solid #4f1750; }
 
 .cTeam {
@@ -3172,5 +3191,71 @@ html, body {
         display: inline-block; } }
     .footer__menu a:hover {
       border-bottom: none; }
+
+.popup__over {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  background: #000;
+  opacity: 0.3;
+  z-index: 200; }
+
+.popup {
+  position: fixed;
+  display: none;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  z-index: 210;
+  padding: 40px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.5); }
+  @media screen and (max-width: 48em) {
+    .popup {
+      width: 90%;
+      padding: 20px; } }
+  .popup h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase; }
+    @media screen and (max-width: 48em) {
+      .popup h2 {
+        font-size: 20px; } }
+  .popup p {
+    font-size: 18px;
+    text-align: justify;
+    margin-top: 20px; }
+    @media screen and (max-width: 48em) {
+      .popup p {
+        font-size: 14px;
+        text-align: inherit; } }
+
+.popup__close {
+  position: absolute;
+  right: -14px;
+  top: -14px;
+  font-size: 18px;
+  border-radius: 50%;
+  background: #fff;
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  cursor: pointer; }
+  .popup__close i {
+    display: block;
+    vertical-align: top;
+    line-height: 28px; }
 
 
