@@ -145,5 +145,3 @@ Main.prototype.Init = function() {
 };
 var main = new Main();
 main.Init();
-
-console.log(main);
