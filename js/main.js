@@ -29,6 +29,12 @@ Main.prototype.getSliderHeight = function() {
 };
 
 Main.prototype.getSlider = function() {
+    this.callback = function(event) {
+        this.$element.find('.owl-item').css({
+            height: window.innerHeight
+        })
+    };
+
     this.hSlider.owlCarousel2({
         items: 1,
         autoplay: true,
@@ -40,7 +46,8 @@ Main.prototype.getSlider = function() {
         mouseDrag: false,
         touchDrag: false,
         navSpeed: 2000,
-        autoplaySpeed: 2000
+        autoplaySpeed: 2000,
+        onTranslate: this.callback
 
     });
 };
