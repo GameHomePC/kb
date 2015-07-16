@@ -16,7 +16,7 @@ if ($verify) {
 
 } else {
     $message['title'] = 'status no verify';
-    $message['message'] = 'message was sent successfully';
+    $message['message'] = 'the message was not sent';
 }
 
 exit(json_encode($message));
