@@ -1,13 +1,12 @@
 .tMenu {
     position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     background: #ebebeb;
-    margin-top: -103px;
     z-index: 100;
-
-    @include breakpointmedia(768, 'max-width') {
-        margin-top: -53px;
-        height: 53px;
-    }
+    margin-top: -103px;
+    transition: all 0.2s ease;
 
     .wrapper {
         @include clearfix();
@@ -21,15 +20,18 @@
             padding: 10px 0;
         }
     }
+
+
 }
 
 body.active {
     .tMenu {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        margin-top: 0;
+//        opacity: 0.2;
+
+//        &:hover {
+//            opacity: 1;
+//        }
     }
 }
 
@@ -71,7 +73,7 @@ body.active {
 
     a {
         display: block;
-        color: #4f1750;
+        color: #585660;
         font-size: 18px;
         text-decoration: none;
         padding-bottom: 8px;
@@ -84,9 +86,13 @@ body.active {
         }
 
         &:hover {
+            color: #4f1750;
             border-bottom: 2px solid #4f1750;
         }
 
-        &.activeLink { border-bottom: 2px solid #4f1750; }
+        &.activeLink {
+            color: #4f1750;
+            border-bottom: 2px solid #4f1750;
+        }
     }
 }

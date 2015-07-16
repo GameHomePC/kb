@@ -6,6 +6,8 @@ function Main() {
     this.tMenuLink = $('#menu a');
     this.tMenuHeight = $('.tMenu').height();
     this.body = $('body');
+    this.footer = $('.footer');
+    this.contactUsForm = $("#contactUs_form");
 }
 
 Main.prototype.getSliderHeight = function() {
@@ -27,18 +29,19 @@ Main.prototype.getSliderHeight = function() {
 };
 
 Main.prototype.getSlider = function() {
-    this.hSlider.owlCarousel({
+    this.hSlider.owlCarousel2({
         items: 1,
-        navigation: true,
-        pagination: false,
-        navigationText: ["",""],
-        itemsDesktop: [1199,1],
-        itemsDesktopSmall: [979,1],
-        itemsTablet: [768,1],
-        slideSpeed: 1500,
-        dragBeforeAnimFinish: false,
+        autoplay: true,
+        nav: true,
+        navText: ['',''],
+        autoplayTimeout: 5000,
+        loop: true,
+        autoplayHoverPause: false,
         mouseDrag: false,
-        touchDrag: false
+        touchDrag: false,
+        navSpeed: 2000,
+        autoplaySpeed: 2000
+
     });
 };
 
@@ -47,9 +50,8 @@ Main.prototype.getSliderTwo = function() {
         items: 1,
         autoplay: true,
         animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        loop:true,
-        autoplayTimeout: 3000,
+        loop: true,
+        autoplayTimeout: 5000,
         autoplayHoverPause: false,
         mouseDrag: false,
         touchDrag: false
@@ -59,16 +61,20 @@ Main.prototype.getSliderTwo = function() {
 Main.prototype.getMenuScroll = function() {
     var menu = this.tMenu,
         menuTopX = menu.offset().top,
-        _this = this;
+        _this = this,
+        footer = this.footer,
+        body = this.body,
+        footerTop = footer.offset().top;
 
     $(window).scroll(function() {
-        var wondowScrollX = $(this).scrollTop();
+        var windowScrollX = $(this).scrollTop();
 
-        if(wondowScrollX >= menuTopX) {
-            _this.body.addClass('active');
+        if(windowScrollX + window.innerHeight <= footerTop) {
+            body.addClass('active');
         } else {
-            _this.body.removeClass('active');
+            body.removeClass('active');
         }
+
     }).trigger('scroll');
 };
 
@@ -79,7 +85,7 @@ Main.prototype.getMenuLinkScroll = function() {
     menu.on('click', function() {
         var self = $(this),
             href = self.attr('data-id'),
-            sectionElement = $('.' + href).offset().top + 2;
+            sectionElement = $('.' + href).offset().top;
 
         if($(window).scrollTop() == sectionElement) return false;
 
@@ -87,7 +93,7 @@ Main.prototype.getMenuLinkScroll = function() {
         self.addClass('activeLink');
 
         $('html, body').stop().animate({
-            scrollTop: sectionElement - _this.tMenuHeight
+            scrollTop: sectionElement
         }, 1000);
 
         return false;
@@ -97,6 +103,8 @@ Main.prototype.getMenuLinkScroll = function() {
 Main.prototype.getPopup = function() {
     var _this = this;
     this.popup = $('.popup');
+    this.popupTitle = $('.popup h2');
+    this.popupDescription = $('.popup p');
     this.popupClose = $('.popup__close');
     this.popupOver = $('.popup__over');
 
@@ -126,8 +134,49 @@ Main.prototype.getPopup = function() {
         });
     };
 
+    this.getShowSend = function(title, description) {
+        _this.popupTitle.text(title);
+        _this.popupDescription.text(description);
+        _this.showPopup();
+    };
+
     this.getClickHide(this.popupClose);
     this.getClickHide(this.popupOver);
+};
+
+Main.prototype.getForm = function() {
+    var _this = this;
+
+    this.contactUsForm.validate({
+        rules: {
+            name: "required",
+            email: {
+                required: true,
+                email: true
+            },
+            message: "required"
+        },
+        messages: {
+            name: "Please enter your name",
+            email: "Please enter a valid email address",
+            message: "Please enter your message"
+        },
+        submitHandler: function(form) {
+            var name = form.name.value,
+                email = form.email.value,
+                message = form.message.value;
+
+            $.ajax({
+                method: "POST",
+                url: "send.php",
+                data: { name: name, email: email, message: message },
+                dataType: 'json',
+                success: function(e) {
+                    _this.getShowSend(e.title, e.message);
+                }
+            })
+        }
+    });
 };
 
 Main.prototype.Init = function() {
@@ -139,6 +188,7 @@ Main.prototype.Init = function() {
         _this.getMenuLinkScroll();
         _this.getMenuScroll();
         _this.getPopup();
+        _this.getForm();
 
         _this.getClickShow($('.footer__menu a'));
     });

@@ -1,15 +1,21 @@
 .hSlider {
-    padding-bottom: 103px;
-
-    @include breakpointmedia(768, 'max-width') {
-        padding-bottom: 53px;
-    }
-
     .owl-prev, .owl-next {
         position: absolute;
         top: 0;
         bottom: 0;
         margin: auto;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        background: rgba(172, 172, 172, 0.2);
+        transition: all 0.2s ease;
+
+        @include breakpointmedia(768, 'max-width') {
+            width: 20px;
+            height: 100%;
+            border-radius: 0;
+        }
+
 
         &:before {
             position: absolute;
@@ -28,6 +34,10 @@
                 width: 20px * 0.5;
                 height: 87px * 0.5;
             }
+        }
+
+        &:hover {
+            background: rgba(172, 172, 172, 0.5);
         }
     }
 

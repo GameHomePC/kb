@@ -1,5 +1,6 @@
 .cContactUs {
     background: #f4f7ed;
+    padding-bottom: 163px;
 
     .wrapper {
         @include clearfix();
@@ -56,6 +57,7 @@
     li {
         float: left;
         margin-left: 38px;
+        transition: all 0.2s ease;
 
         &:first-child {
             margin-left: 0;
@@ -65,6 +67,13 @@
             float: none;
             display: inline-block;
             margin-left: 20px;
+        }
+
+        &:hover {
+            a {
+                border: 1px solid #000;
+                color: #000;
+            }
         }
     }
 
@@ -79,6 +88,7 @@
         font-size: 28px;
         color: #a9b09a;
         text-decoration: none;
+        transition: all 0.2s ease;
     }
 }
 
@@ -106,3 +116,14 @@
         margin-left: 0;
     }
 }
+
+input.error, textarea.error {
+    & + .error {
+        display: block;
+        color: red;
+        font-size: 14px;
+        margin-top: 8px;
+    }
+}
+
+
