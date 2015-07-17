@@ -71,10 +71,15 @@
             background-position: left 0;
         }
     }
+
+    .owl-stage-outer, .owl-stage, .owl-itemm, .hSlider__item {
+        height: 100%;
+    }
 }
 
 .hSlider__item {
     background-position: center center;
+    background-size: cover;
     font-size: 0;
 
     & > img { display: none; }

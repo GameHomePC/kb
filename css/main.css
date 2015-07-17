@@ -2487,9 +2487,12 @@ input, textarea {
       right: 0; } }
   .hSlider .owl-next:before {
     background-position: left 0; }
+.hSlider .owl-stage-outer, .hSlider .owl-stage, .hSlider .owl-itemm, .hSlider .hSlider__item {
+  height: 100%; }
 
 .hSlider__item {
   background-position: center center;
+  background-size: cover;
   font-size: 0; }
   .hSlider__item > img {
     display: none; }
@@ -2841,9 +2844,7 @@ input, textarea {
   width: 100%;
   background: #ebebeb;
   z-index: 100;
-  margin-top: -103px;
-  -webkit-transition: all 0.2s ease;
-          transition: all 0.2s ease; }
+  margin-top: -103px; }
   .tMenu .wrapper:after {
     content: "";
     display: block;
@@ -2972,7 +2973,8 @@ body.active .tMenu {
   .cContactUs__item p {
     font-size: 18px;
     line-height: 24px;
-    margin-top: 25px; }
+    margin-top: 25px;
+    color: #9da58c; }
     @media screen and (max-width: 48em) {
       .cContactUs__item p {
         text-align: justify;

@@ -36,6 +36,7 @@
         font-size: 18px;
         line-height: 24px;
         margin-top: 25px;
+        color: #9da58c;
 
         @include breakpointmedia(768, 'max-width') {
             text-align: justify;

@@ -11,28 +11,44 @@ function Main() {
 }
 
 Main.prototype.getSliderHeight = function() {
-    var _this = this;
-
-    function getHeight() {
-        if(window.innerWidth > 768) {
-            _this.hSlider__item.css({
-                height: window.innerHeight
-            });
-        }
-    }
-
-    getHeight();
-
-    $(window).resize(function() {
-        getHeight();
-    });
+    //var _this = this;
+    //
+    //function getHeight() {
+    //    if(window.innerWidth > 768) {
+    //        _this.hSlider__item.css({
+    //            height: window.innerHeight
+    //        });
+    //    }
+    //}
+    //
+    //getHeight();
+    //
+    //$(window).resize(function() {
+    //    getHeight();
+    //});
 };
 
 Main.prototype.getSlider = function() {
     this.callback = function(event) {
-        this.$element.find('.owl-item').css({
-            height: window.innerHeight
-        })
+        var _this = this;
+
+        var getHeight = function() {
+            if(window.innerWidth > 768) {
+                _this.$element.find('.owl-item').css({
+                    height: window.innerHeight
+                });
+            } else {
+                _this.$element.find('.owl-item').css({
+                    height:'auto'
+                });
+            }
+        };
+
+        getHeight();
+
+        $(window).resize(function() {
+            getHeight();
+        });
     };
 
     this.hSlider.owlCarousel2({
@@ -47,7 +63,8 @@ Main.prototype.getSlider = function() {
         touchDrag: false,
         navSpeed: 2000,
         autoplaySpeed: 2000,
-        onTranslate: this.callback
+        onTranslate: this.callback,
+        onInitialized: this.callback
 
     });
 };
@@ -67,6 +84,7 @@ Main.prototype.getSliderTwo = function() {
 
 Main.prototype.getMenuScroll = function() {
     var menu = this.tMenu,
+        menuHeight = menu.height(),
         menuTopX = menu.offset().top,
         _this = this,
         footer = this.footer,
@@ -77,8 +95,37 @@ Main.prototype.getMenuScroll = function() {
         var windowScrollX = $(this).scrollTop();
 
         if(windowScrollX + window.innerHeight <= footerTop) {
-            body.addClass('active');
+
+            if(window.innerWidth > 768) {
+                if (!(windowScrollX + window.innerHeight - menuHeight >= window.innerHeight)) {
+                    menu.css({
+                        position: 'absolute',
+                        top: window.innerHeight + menuHeight,
+                        bottom:'auto'
+                    });
+                } else {
+                    menu.css({
+                        position: 'fixed',
+                        top: 'auto',
+                        bottom: '0'
+                    });
+                    body.addClass('active');
+                }
+            } else {
+                menu.css({
+                    position: 'fixed',
+                    top: 'auto',
+                    bottom: '0'
+                });
+                body.addClass('active');
+            }
+
         } else {
+            menu.css({
+                position: 'relative',
+                top: 'auto',
+                bottom: '0'
+            });
             body.removeClass('active');
         }
 
@@ -198,6 +245,12 @@ Main.prototype.Init = function() {
         _this.getForm();
 
         _this.getClickShow($('.footer__menu a'));
+
+        $(window).resize(function() {
+            _this.getMenuScroll();
+            _this.getSliderHeight();
+            _this.getSlider();
+        });
     });
 };
 var main = new Main();
