@@ -10,35 +10,32 @@ function Main() {
     this.contactUsForm = $("#contactUs_form");
 }
 
-Main.prototype.getSliderHeight = function() {
-    //var _this = this;
-    //
-    //function getHeight() {
-    //    if(window.innerWidth > 768) {
-    //        _this.hSlider__item.css({
-    //            height: window.innerHeight
-    //        });
-    //    }
-    //}
-    //
-    //getHeight();
-    //
-    //$(window).resize(function() {
-    //    getHeight();
-    //});
-};
-
 Main.prototype.getSlider = function() {
     this.callback = function(event) {
         var _this = this;
 
+        /* video */
+        var video = _this.$element.find('.video');
+
+        video.each(function() {
+            var self = this;
+            self.play();
+        });
+
+        /* height */
         var getHeight = function() {
             if(window.innerWidth > 768) {
                 _this.$element.find('.owl-item').css({
                     height: window.innerHeight
                 });
+                _this.$element.find('.hSlider__item').css({
+                    height: window.innerHeight
+                });
             } else {
                 _this.$element.find('.owl-item').css({
+                    height:'auto'
+                });
+                _this.$element.find('.hSlider__item').css({
                     height:'auto'
                 });
             }
@@ -48,12 +45,12 @@ Main.prototype.getSlider = function() {
 
         $(window).resize(function() {
             getHeight();
-        });
+        }).trigger('resize');
     };
 
     this.hSlider.owlCarousel2({
         items: 1,
-        autoplay: true,
+        autoplay: false,
         nav: true,
         navText: ['',''],
         autoplayTimeout: 5000,
@@ -83,11 +80,11 @@ Main.prototype.getSliderTwo = function() {
 };
 
 Main.prototype.getMenuScroll = function() {
-    var menu = this.tMenu,
+    var _this = this,
+        menu = _this.tMenu,
         menuHeight = menu.height(),
         menuTopX = menu.offset().top,
-        _this = this,
-        footer = this.footer,
+        footer = _this.footer,
         body = this.body,
         footerTop = footer.offset().top;
 
@@ -236,7 +233,6 @@ Main.prototype.getForm = function() {
 Main.prototype.Init = function() {
     var _this = this;
     $(function() {
-        _this.getSliderHeight();
         _this.getSlider();
         _this.getSliderTwo();
         _this.getMenuLinkScroll();
@@ -247,10 +243,9 @@ Main.prototype.Init = function() {
         _this.getClickShow($('.footer__menu a'));
 
         $(window).resize(function() {
-            _this.getMenuScroll();
-            _this.getSliderHeight();
             _this.getSlider();
-        });
+            _this.getMenuScroll();
+        }).trigger('resize');
     });
 };
 var main = new Main();

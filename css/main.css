@@ -2490,7 +2490,38 @@ input, textarea {
 .hSlider .owl-stage-outer, .hSlider .owl-stage, .hSlider .owl-itemm, .hSlider .hSlider__item {
   height: 100%; }
 
+.videoContent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden; }
+  @media screen and (max-width: 48em) {
+    .videoContent {
+      position: relative; } }
+  .videoContent video {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto; }
+    @media screen and (max-width: 48em) {
+      .videoContent video {
+        position: relative;
+        left: 0;
+        -webkit-transform: translateX(0);
+            -ms-transform: translateX(0);
+                transform: translateX(0);
+        width: 100%; } }
+
 .hSlider__item {
+  position: relative;
   background-position: center center;
   background-size: cover;
   font-size: 0; }

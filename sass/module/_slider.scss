@@ -77,12 +77,42 @@
     }
 }
 
+.videoContent {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    overflow: hidden;
+
+    @include breakpointmedia(768, 'max-width') {
+        position: relative;
+    }
+
+    video {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        min-width: 100%;
+        min-height: 100%;
+        width: auto; height: auto;
+
+        @include breakpointmedia(768, 'max-width') {
+            position: relative;
+            left: 0;
+            transform: translateX(0);
+            width: 100%;
+        }
+    }
+}
+
 .hSlider__item {
+    position: relative;
     background-position: center center;
     background-size: cover;
     font-size: 0;
 
     & > img { display: none; }
+
+
 
     @include breakpointmedia(768, 'max-width') {
         background: none!important;
