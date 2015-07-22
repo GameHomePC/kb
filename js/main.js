@@ -10,6 +10,27 @@ function Main() {
     this.contactUsForm = $("#contactUs_form");
 }
 
+Main.prototype.isLoadImage = function(elements, callback) {
+    var menu = elements.find('img'),
+        count = 0,
+        len = menu.length;
+
+    menu.each(function() {
+        var self = this,
+            src = self.src,
+            img = new Image();
+
+        img.src= src;
+        img.onload = function() {
+            count+=1;
+
+            if(count == len) {
+                callback();
+            }
+        }
+    });
+};
+
 Main.prototype.getSlider = function() {
     this.callback = function(event) {
         var _this = this,
@@ -251,25 +272,7 @@ Main.prototype.Init = function() {
         _this.getPopup();
         _this.getForm();
         _this.getClickShow($('.footer__menu a'));
-
-        var menu = _this.tMenu.find('img'),
-            count = 0,
-            len = menu.length;
-
-        menu.each(function() {
-            var self = this,
-                src = self.src,
-                img = new Image();
-
-            img.src= src;
-            img.onload = function() {
-                count+=1;
-
-                if(count == len) {
-                    _this.getMenuScroll();
-                }
-            }
-        });
+        _this.isLoadImage(_this.tMenu, _this.getMenuScroll.bind(_this));
 
         $(window).resize(function() {
             _this.getSlider();
