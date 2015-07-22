@@ -84,6 +84,7 @@
 
     @include breakpointmedia(768, 'max-width') {
         position: relative;
+        margin-bottom: -5%;
     }
 
     video {

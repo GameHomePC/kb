@@ -58,7 +58,7 @@ Main.prototype.getSlider = function() {
                     height:'auto'
                 });
                 _this.$element.find('.hSlider__item').css({
-                    height:'auto'
+                    height: 'auto'
                 });
             }
         };
