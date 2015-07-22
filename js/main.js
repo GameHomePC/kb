@@ -88,7 +88,7 @@ Main.prototype.getMenuScroll = function() {
     var _this = this,
         scroll = this.scroll,
         menu = _this.tMenu,
-        menuHeight = menu.height(),
+        menuHeight = menu.outerHeight(),
         footer = _this.footer,
         body = this.body,
         windowHeight = $(window).height();
@@ -103,6 +103,7 @@ Main.prototype.getMenuScroll = function() {
             if(windowScrollX + windowHeight <= footerTop) {
                 if(window.innerWidth > 768) {
                     if (!(windowScrollX + windowHeight - menuHeight >= windowHeight)) {
+
                         menu.css({
                             position: 'absolute',
                             top: windowHeight + menuHeight,
@@ -136,7 +137,7 @@ Main.prototype.getMenuScroll = function() {
                 body.removeClass('active');
             }
 
-        }).trigger('scroll');
+        });
     }
 };
 
@@ -249,20 +250,33 @@ Main.prototype.Init = function() {
         _this.getMenuLinkScroll();
         _this.getPopup();
         _this.getForm();
-
         _this.getClickShow($('.footer__menu a'));
 
-        $(window).load(function() {
-            _this.getMenuScroll();
+        var menu = _this.tMenu.find('img'),
+            count = 0,
+            len = menu.length;
 
-            $(this).trigger('resize');
+        menu.each(function() {
+            var self = this,
+                src = self.src,
+                img = new Image();
+
+            img.src= src;
+            img.onload = function() {
+                count+=1;
+
+                if(count == len) {
+                    _this.getMenuScroll();
+                }
+            }
         });
-
 
         $(window).resize(function() {
             _this.getSlider();
             _this.getMenuScroll();
         });
+
+
     });
 };
 var main = new Main();
