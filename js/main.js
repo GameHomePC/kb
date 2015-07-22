@@ -4,7 +4,7 @@ function Main() {
     this.bunnerOne = $('#bunnerOne');
     this.tMenu = $('.tMenu');
     this.tMenuLink = $('#menu a');
-    this.tMenuHeight = $('.tMenu').height();
+    this.tMenuHeight = $('.tMenu').outerHeight(true);
     this.body = $('body');
     this.footer = $('.footer');
     this.contactUsForm = $("#contactUs_form");
@@ -12,7 +12,8 @@ function Main() {
 
 Main.prototype.getSlider = function() {
     this.callback = function(event) {
-        var _this = this;
+        var _this = this,
+            resize = this.resize;
 
         /* video */
         var video = _this.$element.find('.video');
@@ -43,9 +44,13 @@ Main.prototype.getSlider = function() {
 
         getHeight();
 
-        $(window).resize(function() {
-            getHeight();
-        }).trigger('resize');
+        if(!resize) {
+            resize = true;
+
+            $(window).resize(function() {
+                getHeight();
+            }).trigger('resize');
+        }
     };
 
     this.hSlider.owlCarousel2({
@@ -81,25 +86,40 @@ Main.prototype.getSliderTwo = function() {
 
 Main.prototype.getMenuScroll = function() {
     var _this = this,
+        scroll = this.scroll,
         menu = _this.tMenu,
         menuHeight = menu.height(),
-        menuTopX = menu.offset().top,
         footer = _this.footer,
+        footerHeight = footer.outerHeight(true),
         body = this.body,
-        footerTop = footer.offset().top;
+        windowHeight = $(window).outerHeight(true);
 
-    $(window).scroll(function() {
-        var windowScrollX = $(this).scrollTop();
+    if(!scroll) {
+        scroll = true;
 
-        if(windowScrollX + window.innerHeight <= footerTop) {
+        $(window).scroll(function() {
+            var windowScrollX = $(this).scrollTop(),
+                footerTop = footer.offset().top;
 
-            if(window.innerWidth > 768) {
-                if (!(windowScrollX + window.innerHeight - menuHeight >= window.innerHeight)) {
-                    menu.css({
-                        position: 'absolute',
-                        top: window.innerHeight + menuHeight,
-                        bottom:'auto'
-                    });
+            if(windowScrollX + windowHeight <= footerTop) {
+                if(window.innerWidth > 768) {
+
+                    if (!(windowScrollX + windowHeight - menuHeight >= windowHeight)) {
+                        menu.css({
+                            position: 'absolute',
+                            top: windowHeight + menuHeight,
+                            bottom:'auto'
+                        });
+
+                    } else {
+                        menu.css({
+                            position: 'fixed',
+                            top: 'auto',
+                            bottom: '0'
+                        });
+                        body.addClass('active');
+
+                    }
                 } else {
                     menu.css({
                         position: 'fixed',
@@ -108,25 +128,18 @@ Main.prototype.getMenuScroll = function() {
                     });
                     body.addClass('active');
                 }
+
             } else {
                 menu.css({
-                    position: 'fixed',
+                    position: 'relative',
                     top: 'auto',
                     bottom: '0'
                 });
-                body.addClass('active');
+                body.removeClass('active');
             }
 
-        } else {
-            menu.css({
-                position: 'relative',
-                top: 'auto',
-                bottom: '0'
-            });
-            body.removeClass('active');
-        }
-
-    }).trigger('scroll');
+        }).trigger('scroll');
+    }
 };
 
 Main.prototype.getMenuLinkScroll = function() {
