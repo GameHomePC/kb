@@ -55,7 +55,7 @@ Main.prototype.getSlider = function() {
 
     this.hSlider.owlCarousel2({
         items: 1,
-        autoplay: true,
+        autoplay: false,
         nav: true,
         navText: ['',''],
         autoplayTimeout: 5000,
@@ -90,9 +90,8 @@ Main.prototype.getMenuScroll = function() {
         menu = _this.tMenu,
         menuHeight = menu.height(),
         footer = _this.footer,
-        footerHeight = footer.outerHeight(true),
         body = this.body,
-        windowHeight = $(window).outerHeight(true);
+        windowHeight = $(window).height();
 
     if(!scroll) {
         scroll = true;
@@ -103,7 +102,6 @@ Main.prototype.getMenuScroll = function() {
 
             if(windowScrollX + windowHeight <= footerTop) {
                 if(window.innerWidth > 768) {
-
                     if (!(windowScrollX + windowHeight - menuHeight >= windowHeight)) {
                         menu.css({
                             position: 'absolute',
@@ -249,16 +247,22 @@ Main.prototype.Init = function() {
         _this.getSlider();
         _this.getSliderTwo();
         _this.getMenuLinkScroll();
-        _this.getMenuScroll();
         _this.getPopup();
         _this.getForm();
 
         _this.getClickShow($('.footer__menu a'));
 
+        $(window).load(function() {
+            _this.getMenuScroll();
+
+            $(this).trigger('resize');
+        });
+
+
         $(window).resize(function() {
             _this.getSlider();
             _this.getMenuScroll();
-        }).trigger('resize');
+        });
     });
 };
 var main = new Main();
