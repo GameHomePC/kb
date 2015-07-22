@@ -55,7 +55,7 @@ Main.prototype.getSlider = function() {
 
     this.hSlider.owlCarousel2({
         items: 1,
-        autoplay: false,
+        autoplay: true,
         nav: true,
         navText: ['',''],
         autoplayTimeout: 5000,
